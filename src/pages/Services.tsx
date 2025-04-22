@@ -1,43 +1,17 @@
 import React from 'react';
 import Header from '@/components/Header';
-import { ArrowRight, Code, PieChart, Search, Target, Megaphone, LineChart, Layers, Database, Globe, BarChart4, Settings, Users } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import Footer from '@/components/Footer';
+import { 
+  Code, PieChart, Search, Target, Megaphone, LineChart, 
+  Layers, Database, Globe, BarChart4, Settings, Users 
+} from 'lucide-react';
+import ServiceHero from '@/components/ServiceHero';
+import ServicesGroup from '@/components/sections/ServicesGroup';
+import WorkProcess from '@/components/sections/WorkProcess';
 import CTASection from '@/components/CTASection';
 
-const ServiceDetails = ({ icon: Icon, title, description, features, price }: { 
-  icon: React.ElementType, 
-  title: string, 
-  description: string, 
-  features: string[],
-  price: string
-}) => {
-  return (
-    <div className="bg-card rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg border border-border">
-      <div className="bg-muted/50 p-8">
-        <div className="w-16 h-16 rounded-full bg-brand-100 flex items-center justify-center mb-5">
-          <Icon className="h-8 w-8 text-primary" />
-        </div>
-        <h3 className="text-2xl font-bold mb-3">{title}</h3>
-        <p className="text-muted-foreground mb-6">{description}</p>
-        <div className="text-2xl font-bold text-primary">{price}</div>
-      </div>
-      <div className="p-8">
-        <h4 className="text-lg font-medium mb-4">Что включено:</h4>
-        <ul className="space-y-3">
-          {features.map((feature, index) => (
-            <li key={index} className="flex items-start">
-              <div className="mr-3 mt-1 text-primary">✓</div>
-              <span>{feature}</span>
-            </li>
-          ))}
-        </ul>
-        <Button className="w-full mt-8">Заказать услугу</Button>
-      </div>
-    </div>
-  );
-};
-
 const Services = () => {
+  // Сервисы разработки веб-сайтов
   const webDevelopmentServices = [
     {
       icon: Code,
@@ -80,6 +54,7 @@ const Services = () => {
     }
   ];
 
+  // Сервисы SEO-продвижения
   const seoServices = [
     {
       icon: Search,
@@ -122,6 +97,7 @@ const Services = () => {
     }
   ];
 
+  // Рекламные сервисы
   const advertisingServices = [
     {
       icon: Target,
@@ -164,6 +140,7 @@ const Services = () => {
     }
   ];
 
+  // Сервисы поддержки
   const supportServices = [
     {
       icon: LineChart,
@@ -211,225 +188,54 @@ const Services = () => {
       <Header />
       <main>
         {/* Герой-секция */}
-        <section className="py-20 bg-gradient-to-b from-muted/50 to-background">
-          <div className="container mx-auto px-4">
-            <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Услуги для роста вашего бизнеса</h1>
-              <p className="text-xl text-muted-foreground mb-10">
-                Мы предлагаем полный спектр услуг по разработке, продвижению и поддержке веб-проектов для увеличения ваших продаж
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg">Получить консультацию</Button>
-                <Button variant="outline" size="lg">Скачать прайс</Button>
-              </div>
-            </div>
-          </div>
-        </section>
+        <ServiceHero />
 
-        {/* Разработка сайтов */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <div className="inline-block bg-brand-100 text-primary font-medium px-4 py-1 rounded-full mb-4">Разработка</div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Разработка сайтов и веб-приложений</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Создаем современные, функциональные и красивые сайты, которые приносят реальные результаты вашему бизнесу
-              </p>
-            </div>
+        {/* Группы сервисов */}
+        <ServicesGroup 
+          title="Разработка сайтов и веб-приложений"
+          subtitle="Разработка"
+          description="Создаем современные, функциональные и красивые сайты, которые приносят реальные результаты вашему бизнесу"
+          badgeText="Разработка"
+          badgeClass="bg-brand-100"
+          services={webDevelopmentServices}
+        />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {webDevelopmentServices.map((service, index) => (
-                <ServiceDetails 
-                  key={index}
-                  icon={service.icon}
-                  title={service.title}
-                  description={service.description}
-                  features={service.features}
-                  price={service.price}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
+        <ServicesGroup 
+          title="SEO-продвижение и оптимизация"
+          subtitle="SEO"
+          description="Выводим сайты в топ поисковых систем и увеличиваем органический трафик для привлечения целевых клиентов"
+          badgeText="SEO"
+          badgeClass="bg-violet-light"
+          services={seoServices}
+          bgClass="bg-muted/50"
+        />
 
-        {/* SEO-продвижение */}
-        <section className="py-16 bg-muted/50">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <div className="inline-block bg-violet-light text-primary font-medium px-4 py-1 rounded-full mb-4">SEO</div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">SEO-продвижение и оптимизация</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Выводим сайты в топ поисковых систем и увеличиваем органический трафик для привлечения целевых клиентов
-              </p>
-            </div>
+        <ServicesGroup 
+          title="Реклама и продвижение"
+          subtitle="Реклама"
+          description="Настраиваем эффективные рекламные кампании, которые привлекают целевую аудиторию и увеличивают продажи"
+          badgeText="Реклама"
+          badgeClass="bg-accent"
+          services={advertisingServices}
+        />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {seoServices.map((service, index) => (
-                <ServiceDetails 
-                  key={index}
-                  icon={service.icon}
-                  title={service.title}
-                  description={service.description}
-                  features={service.features}
-                  price={service.price}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Реклама */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <div className="inline-block bg-accent text-primary font-medium px-4 py-1 rounded-full mb-4">Реклама</div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Реклама и продвижение</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Настраиваем эффективные рекламные кампании, которые привлекают целевую аудиторию и увеличивают продажи
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {advertisingServices.map((service, index) => (
-                <ServiceDetails 
-                  key={index}
-                  icon={service.icon}
-                  title={service.title}
-                  description={service.description}
-                  features={service.features}
-                  price={service.price}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Поддержка */}
-        <section className="py-16 bg-muted/50">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <div className="inline-block bg-brand-100 text-primary font-medium px-4 py-1 rounded-full mb-4">Поддержка</div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Сопровождение и аналитика</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Обеспечиваем стабильную работу сайта, его постоянное развитие и улучшение показателей эффективности
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {supportServices.map((service, index) => (
-                <ServiceDetails 
-                  key={index}
-                  icon={service.icon}
-                  title={service.title}
-                  description={service.description}
-                  features={service.features}
-                  price={service.price}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
+        <ServicesGroup 
+          title="Сопровождение и аналитика"
+          subtitle="Поддержка"
+          description="Обеспечиваем стабильную работу сайта, его постоянное развитие и улучшение показателей эффективности"
+          badgeText="Поддержка"
+          badgeClass="bg-brand-100"
+          services={supportServices}
+          bgClass="bg-muted/50"
+        />
 
         {/* Процесс работы */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Как мы работаем</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Прозрачный и эффективный процесс сотрудничества для достижения максимальных результатов
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-brand-100 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-primary font-bold text-xl">1</span>
-                </div>
-                <h3 className="text-xl font-bold mb-2">Анализ требований</h3>
-                <p className="text-muted-foreground">Изучаем ваш бизнес, цели и потребности</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-violet-light flex items-center justify-center mx-auto mb-4">
-                  <span className="text-primary font-bold text-xl">2</span>
-                </div>
-                <h3 className="text-xl font-bold mb-2">Разработка стратегии</h3>
-                <p className="text-muted-foreground">Создаем план реализации проекта</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center mx-auto mb-4">
-                  <span className="text-primary font-bold text-xl">3</span>
-                </div>
-                <h3 className="text-xl font-bold mb-2">Реализация</h3>
-                <p className="text-muted-foreground">Воплощаем проект в жизнь согласно плану</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-brand-100 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-primary font-bold text-xl">4</span>
-                </div>
-                <h3 className="text-xl font-bold mb-2">Анализ и улучшение</h3>
-                <p className="text-muted-foreground">Постоянно оптимизируем показатели</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <WorkProcess />
 
         <CTASection />
       </main>
 
-      <footer className="bg-foreground text-background py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">WebProfi.Studio</h3>
-              <p className="text-background/70 mb-4">
-                Создаем высококонверсионные сайты, которые работают на ваш бизнес 24/7
-              </p>
-              <p className="text-background/70">
-                © 2023 WebProfi.Studio. Все права защищены.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-bold mb-4">Услуги</h4>
-              <ul className="space-y-2">
-                <li><a href="/services" className="text-background/70 hover:text-background">Разработка сайтов</a></li>
-                <li><a href="/services" className="text-background/70 hover:text-background">SEO-продвижение</a></li>
-                <li><a href="/services" className="text-background/70 hover:text-background">Контекстная реклама</a></li>
-                <li><a href="/services" className="text-background/70 hover:text-background">SMM-продвижение</a></li>
-                <li><a href="/services" className="text-background/70 hover:text-background">Аналитика</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-bold mb-4">Компания</h4>
-              <ul className="space-y-2">
-                <li><a href="/about" className="text-background/70 hover:text-background">О нас</a></li>
-                <li><a href="/portfolio" className="text-background/70 hover:text-background">Портфолио</a></li>
-                <li><a href="#" className="text-background/70 hover:text-background">Блог</a></li>
-                <li><a href="/contact" className="text-background/70 hover:text-background">Контакты</a></li>
-                <li><a href="#" className="text-background/70 hover:text-background">Карьера</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-bold mb-4">Контакты</h4>
-              <ul className="space-y-2">
-                <li className="text-background/70">Москва, ул. Пример, д. 1</li>
-                <li><a href="tel:+78001234567" className="text-background/70 hover:text-background">+7 (800) 123-45-67</a></li>
-                <li><a href="mailto:info@webprofi.studio" className="text-background/70 hover:text-background">info@webprofi.studio</a></li>
-              </ul>
-              <div className="flex space-x-4 mt-4">
-                <a href="#" className="text-background/70 hover:text-background">VK</a>
-                <a href="#" className="text-background/70 hover:text-background">TG</a>
-                <a href="#" className="text-background/70 hover:text-background">YT</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
