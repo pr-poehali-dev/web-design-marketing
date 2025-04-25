@@ -1,38 +1,13 @@
 import React from 'react';
 import { Globe, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import CosmicBackground from '@/components/services/CosmicBackground';
 
 const ServiceHero = () => {
   return (
     <section className="pt-32 pb-16 md:pt-40 md:pb-24 relative overflow-hidden">
       {/* Космический фон */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Солнце */}
-        <div className="absolute -top-20 right-1/4 w-64 h-64 bg-planet-saturn/30 rounded-full blur-3xl"></div>
-        
-        {/* Орбитальная линия */}
-        <div className="w-[140%] h-[140%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border border-primary/5 rounded-full"></div>
-        <div className="w-[120%] h-[120%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border border-primary/10 rounded-full"></div>
-        
-        {/* Планеты */}
-        <div className="absolute -top-10 -left-10 w-32 h-32 bg-planet-earth/20 rounded-full blur-xl opacity-50 floating" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-planet-mars/10 rounded-full blur-xl opacity-30 floating" style={{animationDelay: '2s'}}></div>
-        
-        {/* Звезды */}
-        {Array.from({length: 10}).map((_, i) => (
-          <div 
-            key={i}
-            className="star"
-            style={{
-              width: `${Math.random() * 2 + 1}px`, 
-              height: `${Math.random() * 2 + 1}px`,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`
-            }}
-          ></div>
-        ))}
-      </div>
+      <CosmicBackground count={15} />
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-4xl mx-auto">

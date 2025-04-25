@@ -1,34 +1,13 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Rocket } from 'lucide-react';
+import CosmicBackground from '@/components/services/CosmicBackground';
 
 const CTASection = () => {
   return (
     <section className="py-16 md:py-24 relative overflow-hidden">
-      {/* Солнце */}
-      <div className="absolute -top-60 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-planet-saturn/30 rounded-full blur-3xl"></div>
-      
-      {/* Планета */}
-      <div className="absolute bottom-10 right-10 w-32 h-32 bg-planet-earth/20 rounded-full blur-xl opacity-50 floating"></div>
-      
-      {/* Звезды */}
-      {Array.from({length: 15}).map((_, i) => (
-        <div 
-          key={i}
-          className="star"
-          style={{
-            width: `${Math.random() * 2 + 1}px`, 
-            height: `${Math.random() * 2 + 1}px`,
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 5}s`
-          }}
-        ></div>
-      ))}
-      
-      {/* Астероиды */}
-      <div className="absolute top-1/3 left-20 w-3 h-3 bg-gray-400 rounded-full opacity-30 floating" style={{animationDelay: '2s'}}></div>
-      <div className="absolute bottom-1/4 right-1/3 w-2 h-2 bg-gray-500 rounded-full opacity-30 floating" style={{animationDelay: '1s'}}></div>
+      {/* Фоновые элементы */}
+      <CosmicBackground count={15} />
       
       <div className="container mx-auto px-4">
         <div className="cosmic-card p-8 md:p-12 relative overflow-hidden">
